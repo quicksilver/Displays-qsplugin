@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleExecutable</key>
-	<string>Displays Module</string>
+	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.blacktree.Quicksilver.QSDisplaysPlugIn</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>Displays Module</string>
+	<string>Displays Plugin</string>
+	<key>CFBundleDisplayName</key>
+	<string>Displays Plugin</string>
 	<key>CFBundlePackageType</key>
 	<string>BNDL</string>
 	<key>CFBundleVersion</key>
 	<string>82</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0.0</string>
 	<key>QSActions</key>
 	<dict>
 		<key>QSDisplayParametersApplyAction</key>
@@ -33,8 +37,6 @@
 			<key>name</key>
 			<string>Find With...</string>
 			<key>reverseArguments</key>
-			<false/>
-			<key>validatesObjects</key>
 			<false/>
 		</dict>
 		<key>QSDisplaySetDepthAction</key>
@@ -55,8 +57,6 @@
 			<integer>3</integer>
 			<key>reverseArguments</key>
 			<true/>
-			<key>validatesObjects</key>
-			<false/>
 		</dict>
 		<key>QSDisplaySetRefreshRateAction</key>
 		<dict>
@@ -76,8 +76,6 @@
 			<integer>3</integer>
 			<key>reverseArguments</key>
 			<true/>
-			<key>validatesObjects</key>
-			<false/>
 		</dict>
 		<key>QSDisplaySetResolutionAction</key>
 		<dict>
@@ -97,8 +95,26 @@
 			<integer>3</integer>
 			<key>reverseArguments</key>
 			<true/>
+		</dict>
+		<key>DesktopPictureAction</key>
+		<dict>
+			<key>actionClass</key>
+			<string>QSDisplaysActionProvider</string>
+			<key>actionSelector</key>
+			<string>setDesktop:onScreen:</string>
+			<key>directTypes</key>
+			<array>
+				<string>Apple URL pasteboard type</string>
+				<string>NSFilenamesPboardType</string>
+			</array>
+			<key>icon</key>
+			<string>SetDesktop</string>
+			<key>indirectOptional</key>
+			<true/>
+			<key>name</key>
+			<string>Set Desktop Picture</string>
 			<key>validatesObjects</key>
-			<false/>
+			<string>YES</string>
 		</dict>
 	</dict>
 	<key>QSPlugIn</key>
@@ -110,7 +126,35 @@
 			<string>System</string>
 		</array>
 		<key>description</key>
-		<string>Allows modification of resolution and depth of main display.</string>
+		<string>Allows modification of desktop picture, resolution and depth of displays</string>
+		<key>extendedDescription</key>
+		<string>&lt;h3&gt;Displays Plugin&lt;/h3&gt;
+
+&lt;p&gt;The displays plugin allows Quicksilver to index the displays currently attached to your Mac, in order to set the Desktop picture and their resolution, colour depth and refresh rate.&lt;/p&gt;
+
+&lt;h3&gt;Catalog&lt;/h3&gt;
+
+&lt;p&gt;A single &apos;Displays&apos; catalog item is added to the &apos;Plugins&apos; section in the Catalog preferences which indexes all the displays that are currently attached to your Mac.&lt;/p&gt;
+
+&lt;h3&gt;Actions&lt;/h3&gt;
+
+&lt;h4&gt;Set Desktop Picture&lt;/h4&gt;
+
+&lt;p&gt;This action takes a file or a URL pointing to an image file (types include .jpg, .gif, .pdf etc.) in order to set the currently focused display.&lt;br /&gt;
+In order to set the Desktop picture for a different display, tab (⇥) to the 3rd pane in Quicksilver, and select an alternate display. In order for the list of displays to correctly populate in Quicksilver&apos;s 3rd pane, you &lt;strong&gt;must&lt;/strong&gt; enable the &apos;Displays&apos; catalog item. see above.&lt;/p&gt;
+
+&lt;h4&gt;Set Colour Depth&lt;/h4&gt;
+
+&lt;p&gt;This action allows you to alter the colour depth of a given screen, selected in Quicksilver&apos;s 1st pane. By tabbing to the 3rd pane (⇥) you can see the available options.&lt;/p&gt;
+
+&lt;h4&gt;Set Refresh Rate&lt;/h4&gt;
+
+&lt;p&gt;Similar to the &apos;Set Colour Depth&apos; action, this allows you to alter the refresh rate of a given screen.&lt;/p&gt;
+
+&lt;h4&gt;Set Resolution&lt;/h4&gt;
+
+&lt;p&gt;Similar to the &apos;Set Colour Depth&apos; and &apos;Set Refresh Rate&apos; actions.&lt;/p&gt;
+</string>
 		<key>icon</key>
 		<string>Display</string>
 	</dict>
@@ -154,8 +198,10 @@
 	</dict>
 	<key>QSRequirements</key>
 	<dict>
-		<key>feature</key>
-		<integer>1</integer>
+		<key>obsoletes</key>
+		<array>
+			<string>com.blacktree.Quicksilver.TKDesktopPlugin</string>
+		</array>
 	</dict>
 	<key>QSResourceAdditions</key>
 	<dict>

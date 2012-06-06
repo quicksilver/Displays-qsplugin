@@ -7,6 +7,8 @@
 
 }
 
+- (NSURL *) getRemoteFile:(NSURL *)fileURL;
+
 @end
 
 @interface QSDisplaysObjectSource : QSObjectSource {

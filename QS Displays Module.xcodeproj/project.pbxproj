@@ -10,8 +10,9 @@
 		7F699756096ED79900420E96 /* QSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F699754096ED79800420E96 /* QSCore.framework */; };
 		7F699757096ED79900420E96 /* QSFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F699755096ED79800420E96 /* QSFoundation.framework */; };
 		8D1AC9700486D14A00FE50C9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD92D38A0106425D02CA0E72 /* Cocoa.framework */; };
+		CDDABA1E157FC66100C67253 /* SetDesktop.icns in Resources */ = {isa = PBXBuildFile; fileRef = CDDABA1D157FC66100C67253 /* SetDesktop.icns */; };
+		CDDABA22157FC76400C67253 /* Display.icns in Resources */ = {isa = PBXBuildFile; fileRef = CDDABA21157FC76300C67253 /* Display.icns */; };
 		E1578B29067F506200DDC7C9 /* QSDisplaysSource.m in Sources */ = {isa = PBXBuildFile; fileRef = E1578B27067F506200DDC7C9 /* QSDisplaysSource.m */; };
-		E1578C8A067F8EAD00DDC7C9 /* Display.png in Resources */ = {isa = PBXBuildFile; fileRef = E1578C87067F8EAD00DDC7C9 /* Display.png */; };
 		E1578C8B067F8EAD00DDC7C9 /* DisplayDepth.png in Resources */ = {isa = PBXBuildFile; fileRef = E1578C88067F8EAD00DDC7C9 /* DisplayDepth.png */; };
 		E1578C8C067F8EAD00DDC7C9 /* DisplayResolution.png in Resources */ = {isa = PBXBuildFile; fileRef = E1578C89067F8EAD00DDC7C9 /* DisplayResolution.png */; };
 		E1578CE8067F945A00DDC7C9 /* ActionNames.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1578CE2067F945A00DDC7C9 /* ActionNames.strings */; };
@@ -28,14 +29,15 @@
 		14A8852310CFCBF8007D08C4 /* QSPlugIn.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = QSPlugIn.xcconfig; sourceTree = "<group>"; };
 		14A8852410CFCBF8007D08C4 /* Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		32DBCF980370C29C00C91783 /* QS Displays Module_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "QS Displays Module_Prefix.pch"; sourceTree = "<group>"; };
-		7F699754096ED79800420E96 /* QSCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = QSCore.framework; sourceTree = QSFrameworks; };
-		7F699755096ED79800420E96 /* QSFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = QSFoundation.framework; sourceTree = QSFrameworks; };
+		7F699754096ED79800420E96 /* QSCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = QSCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F699755096ED79800420E96 /* QSFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = QSFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D1AC9730486D14A00FE50C9 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		8D1AC9740486D14A00FE50C9 /* Displays Module.qsplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Displays Module.qsplugin"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D1AC9740486D14A00FE50C9 /* Displays Plugin.qsplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Displays Plugin.qsplugin"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CDDABA1D157FC66100C67253 /* SetDesktop.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = SetDesktop.icns; sourceTree = "<group>"; };
+		CDDABA21157FC76300C67253 /* Display.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Display.icns; sourceTree = "<group>"; };
 		DD92D38A0106425D02CA0E72 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		E1578B26067F506200DDC7C9 /* QSDisplaysSource.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = QSDisplaysSource.h; sourceTree = "<group>"; };
 		E1578B27067F506200DDC7C9 /* QSDisplaysSource.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = QSDisplaysSource.m; sourceTree = "<group>"; };
-		E1578C87067F8EAD00DDC7C9 /* Display.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Display.png; sourceTree = "<group>"; };
 		E1578C88067F8EAD00DDC7C9 /* DisplayDepth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DisplayDepth.png; sourceTree = "<group>"; };
 		E1578C89067F8EAD00DDC7C9 /* DisplayResolution.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DisplayResolution.png; sourceTree = "<group>"; };
 		E1578CE3067F945A00DDC7C9 /* English */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/ActionNames.strings; sourceTree = "<group>"; };
@@ -73,12 +75,13 @@
 		0259C582FE90428111CA0C5A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				E1578C87067F8EAD00DDC7C9 /* Display.png */,
+				CDDABA21157FC76300C67253 /* Display.icns */,
 				E1578C88067F8EAD00DDC7C9 /* DisplayDepth.png */,
 				E1578C89067F8EAD00DDC7C9 /* DisplayResolution.png */,
 				8D1AC9730486D14A00FE50C9 /* Info.plist */,
 				E1578CE2067F945A00DDC7C9 /* ActionNames.strings */,
 				E1578CE4067F945A00DDC7C9 /* InfoPlist.strings */,
+				CDDABA1D157FC66100C67253 /* SetDesktop.icns */,
 				E1578CE6067F945A00DDC7C9 /* SourcePresetNames.strings */,
 			);
 			name = Resources;
@@ -102,7 +105,7 @@
 		1ED78706FE9D4A0611CA0C5A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8D1AC9740486D14A00FE50C9 /* Displays Module.qsplugin */,
+				8D1AC9740486D14A00FE50C9 /* Displays Plugin.qsplugin */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -152,7 +155,7 @@
 			name = "Displays Module";
 			productInstallPath = "$(HOME)/Developer/Palettes";
 			productName = "QS Displays Module";
-			productReference = 8D1AC9740486D14A00FE50C9 /* Displays Module.qsplugin */;
+			productReference = 8D1AC9740486D14A00FE50C9 /* Displays Plugin.qsplugin */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -162,6 +165,7 @@
 			isa = PBXProject;
 			buildConfigurationList = 7F07AEE6085E432800E2AFC4 /* Build configuration list for PBXProject "QS Displays Module" */;
 			compatibilityVersion = "Xcode 2.4";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
 				English,
@@ -184,11 +188,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1578C8A067F8EAD00DDC7C9 /* Display.png in Resources */,
 				E1578C8B067F8EAD00DDC7C9 /* DisplayDepth.png in Resources */,
 				E1578C8C067F8EAD00DDC7C9 /* DisplayResolution.png in Resources */,
 				E1578CE8067F945A00DDC7C9 /* ActionNames.strings in Resources */,
 				E1578CEA067F945A00DDC7C9 /* SourcePresetNames.strings in Resources */,
+				CDDABA1E157FC66100C67253 /* SetDesktop.icns in Resources */,
+				CDDABA22157FC76400C67253 /* Display.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,7 +242,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 14A8852010CFCBF8007D08C4 /* QSPlugIn_Debug.xcconfig */;
 			buildSettings = {
-				PRODUCT_NAME = "Displays Module";
+				PRODUCT_NAME = "Displays Plugin";
 				ZERO_LINK = YES;
 			};
 			name = Debug;
@@ -246,7 +251,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 14A8852210CFCBF8007D08C4 /* QSPlugIn_Release.xcconfig */;
 			buildSettings = {
-				PRODUCT_NAME = "Displays Module";
+				PRODUCT_NAME = "Displays Plugin";
 				ZERO_LINK = NO;
 			};
 			name = Release;
