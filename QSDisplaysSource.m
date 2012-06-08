@@ -1,6 +1,4 @@
 
-#import <QSCore/QSCore.h>
-
 #import "QSDisplaysSource.h"
 
 #define QSDisplayParametersType @"QSDisplayParametersType"
@@ -8,7 +6,7 @@
 #define QSDisplayIDType @"QSDisplayIDType"
 
 
-
+#define fileTypesArray [NSArray arrayWithObjects:@"JPEG",@"PICT",@"TIFF",@"GIF",@"JPEG",@"JPG",@"PCT",@"PICT",@"PNG",@"TIF",@"PDF",nil]
 
 void QSDetectDisplays(){
 CGSDisplayStatusQuery();
@@ -39,7 +37,7 @@ NSArray *QSResolutionObjectsForDisplayID(int displayID){
 	NSDictionary *mode;
     NSEnumerator *modeEnumer=[modes objectEnumerator];
     while(mode=[modeEnumer nextObject]){
-		[resolutions addObject:[NSString stringWithFormat:@"%dx%d",[[mode objectForKey:kCGDisplayWidth]intValue],[[mode objectForKey:kCGDisplayHeight]intValue]]];
+		[resolutions addObject:[NSString stringWithFormat:@"%ldx%ld",(long)[[mode objectForKey:(NSString *)kCGDisplayWidth] integerValue],(long)[[mode objectForKey:(NSString *)kCGDisplayHeight] integerValue]]];
     }
 
 	
@@ -50,8 +48,7 @@ NSArray *QSResolutionObjectsForDisplayID(int displayID){
 		NSArray *dim=[resolution componentsSeparatedByString:@"x"]; 
 		NSNumber *width=[dim objectAtIndex:0];
 		NSNumber *height=[dim objectAtIndex:1];
-		NSString *description=[NSString stringWithFormat:@"%d %C %d Resolution",[width intValue],0x00d7,[height intValue]];
-		NSString *ident=[@"[Display Parameters]:" stringByAppendingString:description];
+		NSString *description=[NSString stringWithFormat:@"%ld %C %dl Resolution",(long)[width integerValue],0x00d7,(long)[height integerValue]];
         newObject=[QSObject makeObjectWithIdentifier:description];
 		[newObject setName:description];
         [newObject setObject:[NSDictionary dictionaryWithObjectsAndKeys:width,kCGDisplayWidth,height,kCGDisplayHeight,nil] forType:QSDisplayParametersType];
@@ -75,7 +72,7 @@ NSArray *QSColorDepthObjectsForDisplayID(int displayID){
 	NSDictionary *mode;
     NSEnumerator *modeEnumer=[modes objectEnumerator];
     while(mode=[modeEnumer nextObject]){
-		[depths addObject:[mode objectForKey:kCGDisplayBitsPerPixel]];
+		[depths addObject:[mode objectForKey:(NSString *)kCGDisplayBitsPerPixel]];
     }
 	
 	NSDictionary *colorDict=[NSDictionary dictionaryWithObjectsAndKeys:@"Millions of Colors",@"32",@"Thousands of Colors",@"16",@"256 Colors",@"8",nil];
@@ -84,12 +81,11 @@ NSArray *QSColorDepthObjectsForDisplayID(int displayID){
     while(depth=[depthEnumer nextObject]){
 		
 		NSString *description=[colorDict objectForKey:[depth stringValue]];
-		NSString *ident=[@"[Display Parameters]:" stringByAppendingString:description];
 		newObject=[QSObject makeObjectWithIdentifier:description];
 		[newObject setName:description];
         [newObject setObject:[NSDictionary dictionaryWithObjectsAndKeys:depth,kCGDisplayBitsPerPixel,nil] forType:QSDisplayParametersType];
 		[newObject setPrimaryType:QSDisplayParametersType];
-		[newObject setObject:[NSString stringWithFormat:@"%d bits per pixel",[depth intValue]]
+		[newObject setObject:[NSString stringWithFormat:@"%ld bits per pixel",(long)[depth integerValue]]
 					 forMeta:kQSObjectDetails];
 		[objects addObject:newObject];
     }
@@ -108,17 +104,15 @@ NSArray *QSRefreshRateObjectsForDisplayID(int displayID){
 	NSDictionary *mode;
     NSEnumerator *modeEnumer=[modes objectEnumerator];
     while(mode=[modeEnumer nextObject]){
-		[rates addObject:[mode objectForKey:kCGDisplayRefreshRate]];
+		[rates addObject:[mode objectForKey:(NSString *)kCGDisplayRefreshRate]];
     }
 	
-	NSDictionary *colorDict=[NSDictionary dictionaryWithObjectsAndKeys:@"Millions of Colors",@"32",@"Thousands of Colors",@"16",@"256 Colors",@"8",nil];
 	NSNumber *rate;
     NSEnumerator *rateEnumer=[rates objectEnumerator];
     while(rate=[rateEnumer nextObject]){
 		
 		NSString *description=[NSString stringWithFormat:@"%@hz",[rate stringValue]];
-		if (![rate intValue])description=@"None (LCD)";
-		NSString *ident=[@"[Display Parameters]:" stringByAppendingString:description];
+		if (![rate integerValue])description=@"None (LCD)";
 		newObject=[QSObject makeObjectWithIdentifier:description];
 		[newObject setName:description];
         [newObject setObject:[NSDictionary dictionaryWithObjectsAndKeys:rate,kCGDisplayBitsPerPixel,nil] forType:QSDisplayParametersType];
@@ -142,7 +136,7 @@ NSArray *QSRefreshRateObjectsForDisplayID(int displayID){
 		[object setIcon:[[NSBundle bundleForClass:[self class]] imageNamed:@"Display"]];
 		return;
 	}
-	if ([[object objectForType:QSDisplayParametersType]objectForKey:kCGDisplayWidth]){
+	if ([[object objectForType:QSDisplayParametersType]objectForKey:(NSString *)kCGDisplayWidth]){
 		[object setIcon:[[NSBundle bundleForClass:[self class]] imageNamed:@"DisplayResolution"]];
 	}else{
 		[object setIcon:[[NSBundle bundleForClass:[self class]] imageNamed:@"DisplayDepth"]];
@@ -170,13 +164,11 @@ NSArray *QSRefreshRateObjectsForDisplayID(int displayID){
 }
 
 
-- (NSArray *) objectsForEntry:(NSDictionary *)theEntry{
+- (NSArray *)objectsForEntry:(NSDictionary *)theEntry{
 	
 	//NSLog(@"Scan Displays");
 	NSMutableArray *objects=[NSMutableArray arrayWithCapacity:1];
 	
-	NSMutableSet *depths=[NSMutableSet set];
-	NSMutableSet *resolutions=[NSMutableSet set];
 	QSObject *newObject;
 	
 	
@@ -191,7 +183,7 @@ NSArray *QSRefreshRateObjectsForDisplayID(int displayID){
 		
 		[newObject setName:[NSString stringWithFormat:@"Display %d"]];
 		[newObject setLabel:[screen deviceName]];
-		[newObject setObject:[NSNumber numberWithInt:[screen screenNumber]] forType:QSDisplayIDType];
+		[newObject setObject:[NSNumber numberWithInteger:[screen screenNumber]] forType:QSDisplayIDType];
 		[newObject setPrimaryType:QSDisplayIDType];
 	//	[newObject setObject:[NSString stringWithFormat:@"%d bits per pixel",[depth intValue]]
 	//				 forMeta:kQSObjectDetails];
@@ -213,34 +205,38 @@ NSArray *QSRefreshRateObjectsForDisplayID(int displayID){
 
 
 @implementation QSDisplaysActionProvider
-//- (NSArray *) types{
-//    return [NSArray arrayWithObject:QSDisplayParametersType];
-//}
 
-//- (NSArray *) actions{
-//	//NSLog(@"detect");
-////NSLog(@"detect");
-//	NSBundle *bundle=[NSBundle bundleForClass:[self class]];
-//
-//	
-//    QSAction *action=[QSAction actionWithIdentifier:kQSDisplayParametersApplyAction bundle:bundle];
-//    [action setIcon:[[NSBundle bundleForClass:[self class]] imageNamed:@"Display"]];
-//    [action setProvider:self];
-//    [action setAction:@selector(selectNetwork:)];
-//    [action setArgumentCount:1];
-//    return [NSArray arrayWithObject:action];
-//}
-
-
-
-- (NSArray *)validActionsForDirectObject:(QSObject *)dObject indirectObject:(QSObject *)iObject{
-	//QSDetectDisplays();
-    return [NSArray arrayWithObject:kQSDisplayParametersApplyAction];
+// for the set desktop picture action
+- (NSArray *) validActionsForDirectObject:(QSObject *)dObject indirectObject:(QSObject *)iObject {
+    // doesn't work with the comma trick
+    if ([dObject count] == 1) {
+        NSString *extension = nil;
+        if ([dObject objectForType:QSFilePathType]) {
+            // Files
+            extension = [[dObject objectForType:QSFilePathType] pathExtension];
+        } else if ([dObject objectForType:QSURLType]) {
+            // URLS
+            extension = [[dObject objectForType:QSURLType] pathExtension];
+        } else {
+            return nil;
+        }
+        // the action's only valid for images
+        BOOL inArray = [fileTypesArray containsObject:[extension uppercaseString]]; 
+        if (inArray) {
+            return [NSArray arrayWithObject:@"DesktopPictureAction"];
+        }
+    }
+return nil;
 }
 
 - (NSArray *)validIndirectObjectsForAction:(NSString *)action directObject:(QSObject *)dObject{
 	
-	int displayID=[[dObject objectForType:QSDisplayIDType]intValue];
+    if ([action isEqualToString:@"DesktopPictureAction"]) {
+        NSArray *objects= (NSArray *)[QSLib scoredArrayForString:nil inSet:[QSLib arrayForType:@"QSDisplayIDType"]];
+        return objects;
+    }
+    
+	NSInteger displayID= [[dObject objectForType:QSDisplayIDType] integerValue];
 	
 	//NSLog(@"action %@",action);
 	if ([action isEqualToString:@"QSDisplaySetDepthAction"])
@@ -250,10 +246,60 @@ NSArray *QSRefreshRateObjectsForDisplayID(int displayID){
 	if ([action isEqualToString:@"QSDisplaySetRefreshRateAction"])
 		return QSRefreshRateObjectsForDisplayID(displayID);
 	
-	
-	
 	return nil;// QSPropertiesObjectsForDisplayID(displayID);
 }
+
+#pragma mark Set Desktop Picture action
+- (QSObject *) setDesktop:(QSObject *)dObject onScreen:(QSObject *)iObject {
+    
+    // deal with URLs - download the remote file
+    NSURL *fileURL = nil;
+    if ([dObject objectForType:QSURLType])
+    {
+        fileURL = [self getRemoteFile:[NSURL URLWithString:[dObject objectForType:QSURLType]]];
+    } else  {
+        fileURL = [NSURL fileURLWithPath:[dObject singleFilePath]];
+    }
+    if (!fileURL) {
+        // warn the user something went wrong
+        NSImage *image = [QSResourceManager imageNamed:@"SetDesktop" inBundle:[NSBundle bundleForClass:[self class]]];
+        NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:@"DisplaysPlugin", QSNotifierType, image, QSNotifierIcon, @"Failed to set Desktop Picture", QSNotifierTitle, @"Image file not found", QSNotifierText, nil];
+        QSShowNotifierWithAttributes(dict);
+        return nil;
+    }
+    
+    NSScreen *screen = nil;
+    
+    // get the screen either default screen (with keyboard focus or the iObject screen
+	if(iObject) {
+        screen = [NSScreen screenWithNumber:[[iObject objectForType:@"QSDisplayIDType"] integerValue]];
+	} else {
+        screen = [NSScreen mainScreen];
+	}
+    NSError *err = nil;
+    [[NSWorkspace sharedWorkspace] setDesktopImageURL:fileURL forScreen:screen options:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO],NSWorkspaceDesktopImageAllowClippingKey,nil] error:&err];
+    
+    if (err) {
+        NSLog(@"Error: %@",err);
+    }
+    return nil;
+}
+
+- (NSURL *) getRemoteFile:(NSURL *)fileURL {
+    NSError *err = nil;
+    NSData *image = [NSData dataWithContentsOfURL:fileURL options:0 error:&err];
+    if (err) {
+        NSLog(@"Error: %@:",err);
+    }
+    if (!image) {
+        return nil;
+    }
+    NSString *tempFile = [NSTemporaryDirectory() stringByAppendingFormat:@"%@.%@",[NSString uniqueString],[fileURL pathExtension]];
+    [image writeToFile:tempFile atomically:YES];
+    return [NSURL fileURLWithPath:tempFile];
+}
+
+# pragma mark other Screen actions
 
 
 - (QSObject *) selectNetwork:(QSObject *)dObject{
@@ -264,7 +310,7 @@ NSArray *QSRefreshRateObjectsForDisplayID(int displayID){
 - (QSObject *) applyParameters:(QSObject *)dObject toDisplay:(QSObject *)iObject{
 	// NSLog(@"Dict %@",);
 	[self applyParameters:[dObject objectForType:QSDisplayParametersType] 
-			  toDisplayID:[[dObject objectForType:QSDisplayIDType]intValue]];
+			  toDisplayID:[[dObject objectForType:QSDisplayIDType] integerValue]];
     return nil;
 }
 
@@ -279,7 +325,7 @@ NSArray *QSRefreshRateObjectsForDisplayID(int displayID){
 	
 	if (!displayID)displayID=kCGDirectMainDisplay;
     
-    NSMutableDictionary *originalMode = [[CGDisplayCurrentMode( displayID ) mutableCopy]autorelease];
+    NSMutableDictionary *originalMode = [[(id)CGDisplayCurrentMode( displayID ) mutableCopy] autorelease];
 	
 	if ( originalMode == NULL )
         return;
@@ -287,14 +333,13 @@ NSArray *QSRefreshRateObjectsForDisplayID(int displayID){
 	[originalMode addEntriesFromDictionary:parameters];
 	   
     mode = CGDisplayBestModeForParameters(displayID,
-                                          [[originalMode objectForKey:kCGDisplayBitsPerPixel]intValue],
-                                          [[originalMode objectForKey:kCGDisplayWidth]intValue],
-                                          [[originalMode objectForKey:kCGDisplayHeight]intValue],
+                                          [[originalMode objectForKey:(NSString *)kCGDisplayBitsPerPixel] integerValue],
+                                          [[originalMode objectForKey:(NSString *)kCGDisplayWidth] integerValue],
+                                          [[originalMode objectForKey:(NSString *)kCGDisplayHeight] integerValue],
                                           &exactMatch);
     
     err = CGDisplaySwitchToMode(displayID, mode);
-	
-	
+		
 	CGDisplayConfigRef configRef;
 	
 	///еее OS 10.3 and above only!
