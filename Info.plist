@@ -120,7 +120,7 @@
 	<key>QSPlugIn</key>
 	<dict>
 		<key>author</key>
-		<string>Blacktree, Inc.</string>
+		<string>Patrick Robertson, Blacktree, Inc.</string>
 		<key>categories</key>
 		<array>
 			<string>System</string>
