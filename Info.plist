@@ -202,6 +202,8 @@ In order to set the Desktop picture for a different display, tab (⇥) to the 3r
 		<array>
 			<string>com.blacktree.Quicksilver.TKDesktopPlugin</string>
 		</array>
+		<key>version</key>
+		<string>3926</string>
 	</dict>
 	<key>QSResourceAdditions</key>
 	<dict>

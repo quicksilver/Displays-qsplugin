@@ -1,6 +1,4 @@
 
-#import <QSCore/QSCore.h>
-
 #import "QSDisplaysSource.h"
 
 #define QSDisplayParametersType @"QSDisplayParametersType"
