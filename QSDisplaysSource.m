@@ -9,7 +9,7 @@
 #define fileTypesArray [NSArray arrayWithObjects:@"JPEG",@"PICT",@"TIFF",@"GIF",@"JPEG",@"JPG",@"PCT",@"PICT",@"PNG",@"TIF",@"PDF",nil]
 
 void QSDetectDisplays(){
-CGSDisplayStatusQuery();
+//CGSDisplayStatusQuery();
 	
 	//kern_return_t IOServiceRequestProbe(  io_service_t service,  unsigned int options ); 
 	/*
@@ -173,13 +173,13 @@ NSArray *QSRefreshRateObjectsForDisplayID(int displayID){
 	
 	
 	for (NSScreen *screen in [NSScreen screens]) {
+		NSInteger screenNum = [screen screenNumber];
+		newObject=[QSObject makeObjectWithIdentifier:[NSString stringWithFormat:@"[Screen]:%ld", (long)screenNum]];
 		
-		newObject=[QSObject makeObjectWithIdentifier:[NSString stringWithFormat:@"[Screen]:%d",[screen screenNumber]]];
 		
-		
-		[newObject setName:[NSString stringWithFormat:@"Display %d"]];
+		[newObject setName:[NSString stringWithFormat:@"Display %ld", (long)screenNum]];
 		[newObject setLabel:[screen deviceName]];
-		[newObject setObject:[NSNumber numberWithInteger:[screen screenNumber]] forType:QSDisplayIDType];
+		[newObject setObject:[NSNumber numberWithInteger:screenNum] forType:QSDisplayIDType];
 		[newObject setPrimaryType:QSDisplayIDType];
 	//	[newObject setObject:[NSString stringWithFormat:@"%d bits per pixel",[depth intValue]]
 	//				 forMeta:kQSObjectDetails];
