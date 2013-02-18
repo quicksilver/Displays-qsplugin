@@ -172,11 +172,7 @@ NSArray *QSRefreshRateObjectsForDisplayID(int displayID){
 	QSObject *newObject;
 	
 	
-	id screen;
-    NSArray *screens=[NSScreen screens];
-	int i;
-	for(i=0;i<[screens count];i++){
-		screen=[screens objectAtIndex:i];
+	for (NSScreen *screen in [NSScreen screens]) {
 		
 		newObject=[QSObject makeObjectWithIdentifier:[NSString stringWithFormat:@"[Screen]:%d",[screen screenNumber]]];
 		
