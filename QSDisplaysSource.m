@@ -48,7 +48,7 @@ NSArray *QSResolutionObjectsForDisplayID(int displayID){
 		NSArray *dim=[resolution componentsSeparatedByString:@"x"]; 
 		NSNumber *width=[dim objectAtIndex:0];
 		NSNumber *height=[dim objectAtIndex:1];
-		NSString *description=[NSString stringWithFormat:@"%ld %C %dl Resolution",(long)[width integerValue],0x00d7,(long)[height integerValue]];
+		NSString *description=[NSString stringWithFormat:@"%ld %C %ld Resolution", (long)[width integerValue], (unsigned short)0x00d7, (long)[height integerValue]];
         newObject=[QSObject makeObjectWithIdentifier:description];
 		[newObject setName:description];
         [newObject setObject:[NSDictionary dictionaryWithObjectsAndKeys:width,kCGDisplayWidth,height,kCGDisplayHeight,nil] forType:QSDisplayParametersType];
@@ -309,8 +309,8 @@ return nil;
 }
 - (QSObject *) applyParameters:(QSObject *)dObject toDisplay:(QSObject *)iObject{
 	// NSLog(@"Dict %@",);
-	[self applyParameters:[dObject objectForType:QSDisplayParametersType] 
-			  toDisplayID:[[dObject objectForType:QSDisplayIDType] integerValue]];
+	[self applyParameters:[dObject objectForType:QSDisplayParametersType]
+			  toDisplayID:[[iObject objectForType:QSDisplayIDType] integerValue]];
     return nil;
 }
 
