@@ -8,23 +8,6 @@
 
 #define fileTypesArray [NSArray arrayWithObjects:@"JPEG",@"PICT",@"TIFF",@"GIF",@"JPEG",@"JPG",@"PCT",@"PICT",@"PNG",@"TIF",@"PDF",nil]
 
-void QSDetectDisplays(){
-CGSDisplayStatusQuery();
-	
-	//kern_return_t IOServiceRequestProbe(  io_service_t service,  unsigned int options ); 
-	/*
-	 
-	 
-	 I'm using IOKit Right now I don't have the source code in front of me, but
-	 there's an API there to rescan the devices.
-	 You need to open a IOKit port and then call this API (It's a matter of
-														   getting the IOMasterPort, then IOServiceMatching with the graphics
-														   services).
-	 Then the useful API is IOServiceRequestProbe, with the services found above,
-	 and it does what we want
-	*/
-}
-
 NSArray *QSResolutionObjectsForDisplayID(int displayID){
 	if (!displayID)displayID=kCGDirectMainDisplay;
 	
@@ -48,7 +31,7 @@ NSArray *QSResolutionObjectsForDisplayID(int displayID){
 		NSArray *dim=[resolution componentsSeparatedByString:@"x"]; 
 		NSNumber *width=[dim objectAtIndex:0];
 		NSNumber *height=[dim objectAtIndex:1];
-		NSString *description=[NSString stringWithFormat:@"%ld %C %dl Resolution",(long)[width integerValue],0x00d7,(long)[height integerValue]];
+		NSString *description=[NSString stringWithFormat:@"%ld %C %ld Resolution", (long)[width integerValue], (unsigned short)0x00d7, (long)[height integerValue]];
         newObject=[QSObject makeObjectWithIdentifier:description];
 		[newObject setName:description];
         [newObject setObject:[NSDictionary dictionaryWithObjectsAndKeys:width,kCGDisplayWidth,height,kCGDisplayHeight,nil] forType:QSDisplayParametersType];
@@ -172,18 +155,14 @@ NSArray *QSRefreshRateObjectsForDisplayID(int displayID){
 	QSObject *newObject;
 	
 	
-	id screen;
-    NSArray *screens=[NSScreen screens];
-	int i;
-	for(i=0;i<[screens count];i++){
-		screen=[screens objectAtIndex:i];
-		
-		newObject=[QSObject makeObjectWithIdentifier:[NSString stringWithFormat:@"[Screen]:%d",[screen screenNumber]]];
+	for (NSScreen *screen in [NSScreen screens]) {
+		NSInteger screenNum = [screen screenNumber];
+		newObject=[QSObject makeObjectWithIdentifier:[NSString stringWithFormat:@"[Screen]:%ld", (long)screenNum]];
 		
 		
-		[newObject setName:[NSString stringWithFormat:@"Display %d"]];
+		[newObject setName:[NSString stringWithFormat:@"Display %ld", (long)screenNum]];
 		[newObject setLabel:[screen deviceName]];
-		[newObject setObject:[NSNumber numberWithInteger:[screen screenNumber]] forType:QSDisplayIDType];
+		[newObject setObject:[NSNumber numberWithInteger:screenNum] forType:QSDisplayIDType];
 		[newObject setPrimaryType:QSDisplayIDType];
 	//	[newObject setObject:[NSString stringWithFormat:@"%d bits per pixel",[depth intValue]]
 	//				 forMeta:kQSObjectDetails];
@@ -309,8 +288,8 @@ return nil;
 }
 - (QSObject *) applyParameters:(QSObject *)dObject toDisplay:(QSObject *)iObject{
 	// NSLog(@"Dict %@",);
-	[self applyParameters:[dObject objectForType:QSDisplayParametersType] 
-			  toDisplayID:[[dObject objectForType:QSDisplayIDType] integerValue]];
+	[self applyParameters:[dObject objectForType:QSDisplayParametersType]
+			  toDisplayID:[[iObject objectForType:QSDisplayIDType] integerValue]];
     return nil;
 }
 
