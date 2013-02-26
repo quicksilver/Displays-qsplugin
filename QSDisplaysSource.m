@@ -8,23 +8,6 @@
 
 #define fileTypesArray [NSArray arrayWithObjects:@"JPEG",@"PICT",@"TIFF",@"GIF",@"JPEG",@"JPG",@"PCT",@"PICT",@"PNG",@"TIF",@"PDF",nil]
 
-void QSDetectDisplays(){
-//CGSDisplayStatusQuery();
-	
-	//kern_return_t IOServiceRequestProbe(  io_service_t service,  unsigned int options ); 
-	/*
-	 
-	 
-	 I'm using IOKit Right now I don't have the source code in front of me, but
-	 there's an API there to rescan the devices.
-	 You need to open a IOKit port and then call this API (It's a matter of
-														   getting the IOMasterPort, then IOServiceMatching with the graphics
-														   services).
-	 Then the useful API is IOServiceRequestProbe, with the services found above,
-	 and it does what we want
-	*/
-}
-
 NSArray *QSResolutionObjectsForDisplayID(int displayID){
 	if (!displayID)displayID=kCGDirectMainDisplay;
 	
