@@ -4,6 +4,8 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
+	<key>CFBundleDisplayName</key>
+	<string>Displays Plugin</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -12,16 +14,34 @@
 	<string>6.0</string>
 	<key>CFBundleName</key>
 	<string>Displays Plugin</string>
-	<key>CFBundleDisplayName</key>
-	<string>Displays Plugin</string>
 	<key>CFBundlePackageType</key>
 	<string>BNDL</string>
-	<key>CFBundleVersion</key>
-	<string>89</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.0</string>
+	<string>1.0.1</string>
+	<key>CFBundleVersion</key>
+	<string>8A</string>
 	<key>QSActions</key>
 	<dict>
+		<key>DesktopPictureAction</key>
+		<dict>
+			<key>actionClass</key>
+			<string>QSDisplaysActionProvider</string>
+			<key>actionSelector</key>
+			<string>setDesktop:onScreen:</string>
+			<key>directTypes</key>
+			<array>
+				<string>Apple URL pasteboard type</string>
+				<string>NSFilenamesPboardType</string>
+			</array>
+			<key>icon</key>
+			<string>SetDesktop</string>
+			<key>indirectOptional</key>
+			<true/>
+			<key>name</key>
+			<string>Set Desktop Picture</string>
+			<key>validatesObjects</key>
+			<string>YES</string>
+		</dict>
 		<key>QSDisplayParametersApplyAction</key>
 		<dict>
 			<key>actionClass</key>
@@ -96,26 +116,6 @@
 			<key>reverseArguments</key>
 			<true/>
 		</dict>
-		<key>DesktopPictureAction</key>
-		<dict>
-			<key>actionClass</key>
-			<string>QSDisplaysActionProvider</string>
-			<key>actionSelector</key>
-			<string>setDesktop:onScreen:</string>
-			<key>directTypes</key>
-			<array>
-				<string>Apple URL pasteboard type</string>
-				<string>NSFilenamesPboardType</string>
-			</array>
-			<key>icon</key>
-			<string>SetDesktop</string>
-			<key>indirectOptional</key>
-			<true/>
-			<key>name</key>
-			<string>Set Desktop Picture</string>
-			<key>validatesObjects</key>
-			<string>YES</string>
-		</dict>
 	</dict>
 	<key>QSPlugIn</key>
 	<dict>
@@ -134,26 +134,26 @@
 
 &lt;h3&gt;Catalog&lt;/h3&gt;
 
-&lt;p&gt;A single &apos;Displays&apos; catalog item is added to the &apos;Plugins&apos; section in the Catalog preferences which indexes all the displays that are currently attached to your Mac.&lt;/p&gt;
+&lt;p&gt;A single 'Displays' catalog item is added to the 'Plugins' section in the Catalog preferences which indexes all the displays that are currently attached to your Mac.&lt;/p&gt;
 
 &lt;h3&gt;Actions&lt;/h3&gt;
 
 &lt;h4&gt;Set Desktop Picture&lt;/h4&gt;
 
 &lt;p&gt;This action takes a file or a URL pointing to an image file (types include .jpg, .gif, .pdf etc.) in order to set the currently focused display.&lt;br /&gt;
-In order to set the Desktop picture for a different display, tab (⇥) to the 3rd pane in Quicksilver, and select an alternate display. In order for the list of displays to correctly populate in Quicksilver&apos;s 3rd pane, you &lt;strong&gt;must&lt;/strong&gt; enable the &apos;Displays&apos; catalog item. see above.&lt;/p&gt;
+In order to set the Desktop picture for a different display, tab (⇥) to the 3rd pane in Quicksilver, and select an alternate display. In order for the list of displays to correctly populate in Quicksilver's 3rd pane, you &lt;strong&gt;must&lt;/strong&gt; enable the 'Displays' catalog item. see above.&lt;/p&gt;
 
 &lt;h4&gt;Set Colour Depth&lt;/h4&gt;
 
-&lt;p&gt;This action allows you to alter the colour depth of a given screen, selected in Quicksilver&apos;s 1st pane. By tabbing to the 3rd pane (⇥) you can see the available options.&lt;/p&gt;
+&lt;p&gt;This action allows you to alter the colour depth of a given screen, selected in Quicksilver's 1st pane. By tabbing to the 3rd pane (⇥) you can see the available options.&lt;/p&gt;
 
 &lt;h4&gt;Set Refresh Rate&lt;/h4&gt;
 
-&lt;p&gt;Similar to the &apos;Set Colour Depth&apos; action, this allows you to alter the refresh rate of a given screen.&lt;/p&gt;
+&lt;p&gt;Similar to the 'Set Colour Depth' action, this allows you to alter the refresh rate of a given screen.&lt;/p&gt;
 
 &lt;h4&gt;Set Resolution&lt;/h4&gt;
 
-&lt;p&gt;Similar to the &apos;Set Colour Depth&apos; and &apos;Set Refresh Rate&apos; actions.&lt;/p&gt;
+&lt;p&gt;Similar to the 'Set Colour Depth' and 'Set Refresh Rate' actions.&lt;/p&gt;
 </string>
 		<key>icon</key>
 		<string>Display</string>
