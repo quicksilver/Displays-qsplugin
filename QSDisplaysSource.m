@@ -325,8 +325,8 @@ return nil;
 	   // setup display switch configuration
 	   CGBeginDisplayConfiguration(&configRef);
 	   CGConfigureDisplayMode(configRef, kCGDirectMainDisplay, mode);
-	   CGConfigureDisplayFadeEffect(configRef, 2.0f, 2.0f,     // 3 second fade out and in
-									1.0f, 0.0f, 0.0f);         // fade to black
+	   CGConfigureDisplayFadeEffect(configRef, 0.3f, 0.5f,     // 3 second fade out and in
+									0.0f, 0.0f, 0.0f);         // fade to black
 	   err = CGCompleteDisplayConfiguration(configRef, kCGConfigurePermanently);
 	   if ( err != CGDisplayNoErr )
 		   NSLog(@"error %d",err);
