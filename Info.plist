@@ -17,9 +17,9 @@
 	<key>CFBundlePackageType</key>
 	<string>BNDL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.2</string>
+	<string>1.1.0</string>
 	<key>CFBundleVersion</key>
-	<string>8B</string>
+	<string>8C</string>
 	<key>QSActions</key>
 	<dict>
 		<key>DesktopPictureAction</key>

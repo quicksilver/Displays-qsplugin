@@ -15,8 +15,6 @@
 		E1578B29067F506200DDC7C9 /* QSDisplaysSource.m in Sources */ = {isa = PBXBuildFile; fileRef = E1578B27067F506200DDC7C9 /* QSDisplaysSource.m */; };
 		E1578C8B067F8EAD00DDC7C9 /* DisplayDepth.png in Resources */ = {isa = PBXBuildFile; fileRef = E1578C88067F8EAD00DDC7C9 /* DisplayDepth.png */; };
 		E1578C8C067F8EAD00DDC7C9 /* DisplayResolution.png in Resources */ = {isa = PBXBuildFile; fileRef = E1578C89067F8EAD00DDC7C9 /* DisplayResolution.png */; };
-		E1578CE8067F945A00DDC7C9 /* ActionNames.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1578CE2067F945A00DDC7C9 /* ActionNames.strings */; };
-		E1578CEA067F945A00DDC7C9 /* SourcePresetNames.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1578CE6067F945A00DDC7C9 /* SourcePresetNames.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,9 +35,7 @@
 		E1578B27067F506200DDC7C9 /* QSDisplaysSource.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = QSDisplaysSource.m; sourceTree = "<group>"; };
 		E1578C88067F8EAD00DDC7C9 /* DisplayDepth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DisplayDepth.png; sourceTree = "<group>"; };
 		E1578C89067F8EAD00DDC7C9 /* DisplayResolution.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DisplayResolution.png; sourceTree = "<group>"; };
-		E1578CE3067F945A00DDC7C9 /* English */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/ActionNames.strings; sourceTree = "<group>"; };
 		E1578CE5067F945A00DDC7C9 /* English */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		E1578CE7067F945A00DDC7C9 /* English */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/SourcePresetNames.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,10 +71,8 @@
 				E1578C88067F8EAD00DDC7C9 /* DisplayDepth.png */,
 				E1578C89067F8EAD00DDC7C9 /* DisplayResolution.png */,
 				8D1AC9730486D14A00FE50C9 /* Info.plist */,
-				E1578CE2067F945A00DDC7C9 /* ActionNames.strings */,
 				E1578CE4067F945A00DDC7C9 /* InfoPlist.strings */,
 				CDDABA1D157FC66100C67253 /* SetDesktop.icns */,
-				E1578CE6067F945A00DDC7C9 /* SourcePresetNames.strings */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -131,7 +125,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7F07AEE2085E432800E2AFC4 /* Build configuration list for PBXNativeTarget "Displays Module" */;
 			buildPhases = (
-				D4EF507016D27D3300573E80 /* Update Version and Documentation */,
 				8D1AC9660486D14A00FE50C9 /* Resources */,
 				8D1AC96A0486D14A00FE50C9 /* Sources */,
 				8D1AC96E0486D14A00FE50C9 /* Frameworks */,
@@ -153,6 +146,11 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0460;
+				TargetAttributes = {
+					8D1AC9600486D14A00FE50C9 = {
+						ProvisioningStyle = Manual;
+					};
+				};
 			};
 			buildConfigurationList = 7F07AEE6085E432800E2AFC4 /* Build configuration list for PBXProject "QS Displays Module" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -181,31 +179,12 @@
 			files = (
 				E1578C8B067F8EAD00DDC7C9 /* DisplayDepth.png in Resources */,
 				E1578C8C067F8EAD00DDC7C9 /* DisplayResolution.png in Resources */,
-				E1578CE8067F945A00DDC7C9 /* ActionNames.strings in Resources */,
-				E1578CEA067F945A00DDC7C9 /* SourcePresetNames.strings in Resources */,
 				CDDABA1E157FC66100C67253 /* SetDesktop.icns in Resources */,
 				CDDABA22157FC76400C67253 /* Display.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		D4EF507016D27D3300573E80 /* Update Version and Documentation */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 8;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Update Version and Documentation";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-			shellPath = /bin/sh;
-			shellScript = "\"$QS_BUILD_ROOT/Tools/bltrversion\"";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8D1AC96A0486D14A00FE50C9 /* Sources */ = {
@@ -219,28 +198,12 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		E1578CE2067F945A00DDC7C9 /* ActionNames.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E1578CE3067F945A00DDC7C9 /* English */,
-			);
-			name = ActionNames.strings;
-			sourceTree = "<group>";
-		};
 		E1578CE4067F945A00DDC7C9 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				E1578CE5067F945A00DDC7C9 /* English */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		E1578CE6067F945A00DDC7C9 /* SourcePresetNames.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E1578CE7067F945A00DDC7C9 /* English */,
-			);
-			name = SourcePresetNames.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
